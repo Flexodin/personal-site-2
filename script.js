@@ -93,6 +93,23 @@ document.querySelectorAll(".timeline-marker").forEach((marker) => {
   });
 });
 
+const caseStudyModal = document.getElementById("case-study-modal");
+const caseStudyTrigger = document.getElementById("case-study-trigger");
+const caseStudyClose = document.getElementById("case-study-close");
+let caseStudyReturnFocus;
+
+caseStudyTrigger?.addEventListener("click", () => {
+  caseStudyReturnFocus = document.activeElement;
+  caseStudyModal?.showModal();
+  caseStudyClose?.focus();
+});
+
+caseStudyClose?.addEventListener("click", () => caseStudyModal?.close());
+caseStudyModal?.addEventListener("click", (event) => {
+  if (event.target === caseStudyModal) caseStudyModal.close();
+});
+caseStudyModal?.addEventListener("close", () => caseStudyReturnFocus?.focus());
+
 // Follow the reader through the journey as each milestone reaches the viewport.
 (function initJourneyScroll() {
   if (typeof gsap !== "undefined") return;

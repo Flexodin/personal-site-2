@@ -99,8 +99,7 @@
             <h3>Dropshipping Store</h3>
             <p>I tried dropshipping but failed, but i learned many things from it.</p>
             <div class="project-links">
-              <a href="#" class="btn-3d">case study</a>
-              <a href="#" class="btn-3d">store</a>
+              <button class="btn-3d" id="case-study-trigger" type="button" aria-haspopup="dialog">case study</button>
             </div>
           </div>
         </article>
@@ -112,7 +111,6 @@
             <p>This personal site — built with HTML, modern CSS styling, and vanilla JavaScript. Fast, lightweight, and responsive across all devices.</p>
             <div class="project-links">
               <a href="#top" class="btn-3d">view site</a>
-              <a href="#" class="btn-3d">source</a>
             </div>
           </div>
         </article>
@@ -123,7 +121,7 @@
     <section class="journey wrap" id="journey">
       <div class="section-heading-row">
         <div>
-          <p class="eyebrow">the route so far</p>
+          <p class="eyebrow"></p>
           <h2>Coding journey</h2>
         </div>
         <span class="section-stamp">Patiala → everywhere</span>
@@ -180,7 +178,7 @@
     </section>
 
     <section class="skills wrap" id="skills">
-      <p class="eyebrow">the working kit</p>
+      <p class="eyebrow"></p>
       <h2>Skills &amp; tooling</h2>
       <p class="section-lede">A practical mix of craft, commerce, and tools I use to keep learning in public.</p>
       <div class="skills-grid">
@@ -243,6 +241,17 @@
     </section>
 
   </main>
+
+  <dialog class="case-study-modal" id="case-study-modal" aria-labelledby="case-study-title">
+    <div class="case-study-modal-inner">
+      <button class="case-study-close" id="case-study-close" type="button" aria-label="Close case study">×</button>
+      <p class="eyebrow">project reflection</p>
+      <h2 id="case-study-title">What dropshipping taught me</h2>
+      <p>I started dropshipping three years ago. I was excited to build something of my own, but I eventually failed because I did not yet have enough knowledge about product research, marketing, and running an online store.</p>
+      <p>I also spent far too much money on ads before I understood how to test them properly. That experience was difficult, but it taught me to learn the fundamentals first, start with smaller experiments, and treat every result as useful feedback.</p>
+      <p class="case-study-lesson">The project did not work out, but the lessons still shape how I build today.</p>
+    </div>
+  </dialog>
 
   <aside class="advancement-toast" id="advancement-toast" aria-label="End of page notification" aria-hidden="true">
     <div class="advancement-toast-inner">

@@ -548,6 +548,7 @@ section {
 /* 3D Tactile Buttons */
 .btn-3d {
   display: inline-block;
+  font-family: inherit;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.35rem 0.75rem;
@@ -559,6 +560,7 @@ section {
   box-shadow: 4px 4px 0 var(--ink);
   transition: all 0.12s ease-out;
   border-radius: 0;
+  cursor: pointer;
 }
 .btn-3d:hover {
   background: var(--orange);
@@ -570,6 +572,54 @@ section {
 .btn-3d:active {
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* ---------- case study modal ---------- */
+.case-study-modal {
+  width: min(34rem, calc(100% - 2rem));
+  padding: 0;
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 9px 9px 0 var(--orange);
+}
+.case-study-modal::backdrop {
+  background: rgba(4, 12, 28, 0.78);
+}
+.case-study-modal-inner {
+  position: relative;
+  padding: 2rem;
+}
+.case-study-modal h2 {
+  max-width: 19rem;
+  margin: 0.35rem 2.5rem 1.25rem 0;
+}
+.case-study-modal p:not(.eyebrow) {
+  color: var(--grey);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.case-study-lesson {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink) !important;
+}
+.case-study-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 1.25rem/1 var(--mono);
+  cursor: pointer;
+}
+.case-study-close:hover,
+.case-study-close:focus-visible {
+  background: var(--orange);
+  outline: none;
 }
 
 /* ---------- now ---------- */
