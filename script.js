@@ -127,7 +127,7 @@ document.querySelectorAll(".timeline-marker").forEach((marker) => {
 const contactForm = document.getElementById("contact-form");
 const formError = document.getElementById("form-error");
 const formSuccess = document.getElementById("form-success");
-contactForm?.addEventListener("submit", (event) => {
+contactForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(contactForm);
   const name = String(formData.get("name") || "").trim();
@@ -140,8 +140,29 @@ contactForm?.addEventListener("submit", (event) => {
     return;
   }
   formError.textContent = "";
-  formSuccess.classList.add("is-visible");
-  contactForm.reset();
+  formSuccess.classList.remove("is-visible");
+
+  const submitButton = contactForm.querySelector("button[type=submit]");
+  submitButton.disabled = true;
+  submitButton.setAttribute("aria-busy", "true");
+  submitButton.firstChild.textContent = "sending... ";
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok) throw new Error("Message service returned an error.");
+    formSuccess.classList.add("is-visible");
+    contactForm.reset();
+  } catch (error) {
+    formError.textContent = "Your message could not be sent. Please email me directly instead.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.removeAttribute("aria-busy");
+    submitButton.firstChild.textContent = "send message ";
+  }
 });
 
 // Celebrate reaching the final contact section without covering the form itself.

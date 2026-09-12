@@ -14,6 +14,15 @@ Open `index.html` and replace:
 Colors and fonts live at the top of `style.css` under `:root` if you want to
 tweak the palette.
 
+## Receive contact form messages
+
+The contact form uses FormSubmit to deliver messages to `tejveer603s@gmail.com`.
+After deploying the site, submit the form once and click the activation link in
+the email FormSubmit sends you. Later submissions will arrive in your inbox.
+
+This is email delivery rather than a live chat. For an actual real-time chat
+window, add a service such as Tawk.to or Crisp.
+
 ## Deploy with GitHub Pages (free)
 
 1. Create a new **public** GitHub repo (e.g. `my-website`).
