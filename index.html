@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tejveer Singh — personal site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="ambient-3d-canvas" aria-hidden="true"></canvas>
+  <div class="night-sky" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="site-logo" href="#top" aria-label="EZY home">EZY</a>
+      <div class="header-right">
+        <nav>
+          <a href="#about">about</a>
+          <a href="#projects">projects</a>
+          <a href="#journey">journey</a>
+          <a href="#skills">skills</a>
+          <a href="#notes">notes</a>
+          <a href="#contact">contact</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch to dark theme" title="Toggle dark/light theme" type="button">
+          <span class="theme-icon-light" aria-hidden="true">☀</span>
+          <span class="theme-icon-dark" aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero wrap" id="about">
+      <div class="hero-video-wrap">
+        <video class="hero-video" autoplay muted playsinline preload="metadata" poster="">
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260601_110537_3a579fa0-7bbc-4d94-9d25-0e816c7840f5.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-scrim" aria-hidden="true"></div>
+        <div class="pixel-particles" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hero-content">
+          <p class="kicker">HI, I'm</p>
+          <h1 class="hero-title">
+            Tejveer Singh
+            <span class="hero-title-sub">building for the web &amp; exploring e-commerce</span>
+          </h1>
+          <p class="hero-lede">
+            I'm from a small village in Patiala, <span class="highlight">Punjab</span>.
+            I recently started my coding journey and love creating websites from scratch.
+          </p>
+          <div class="hero-tags">
+            <span>html</span><span>css</span><span>javascript</span><span>dropshipping</span><span>e-commerce</span><span>web design</span>
+          </div>
+        </div>
+        <div class="hero-video-meta"><span class="pulse-dot"></span> a moving picture of the work</div>
+      </div>
+    </section>
+
+    <section class="build-lab wrap" id="build-lab">
+      <div class="build-lab-copy">
+        <p class="eyebrow">the build lab</p>
+        <h2>Ideas in motion.</h2>
+        <p class="section-lede">A small playground for the things I am learning: visual systems, useful interactions, and the details that make a digital experience feel alive.</p>
+        <div class="build-lab-points">
+          <article>
+            <span>01</span>
+            <h3>Make it clear</h3>
+            <p>Simple structure first. Every page should help someone know where to go next.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Make it move</h3>
+            <p>Motion should reward curiosity and show how the pieces of an idea connect.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Make it useful</h3>
+            <p>From a storefront to a portfolio, the final test is whether it helps a real person.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects wrap" id="projects">
+      <h2>Projects</h2>
+      <p class="section-lede">Things I'm actively building and experimenting with.</p>
+
+      <div class="project-grid">
+
+        <article class="project-card" data-tilt>
+          <div class="project-card-inner">
+            <span class="project-num">01</span>
+            <h3>Dropshipping Store</h3>
+            <p>An e-commerce venture focused on curated product research, supplier coordination, and conversion-optimized store design.</p>
+            <div class="project-links">
+              <a href="#" class="btn-3d">case study</a>
+              <a href="#" class="btn-3d">store</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-tilt>
+          <div class="project-card-inner">
+            <span class="project-num">02</span>
+            <h3>Personal Portfolio</h3>
+            <p>This personal site — built with semantic HTML, modern CSS styling, and vanilla JavaScript. Fast, lightweight, and responsive across all devices.</p>
+            <div class="project-links">
+              <a href="#top" class="btn-3d">view site</a>
+              <a href="#" class="btn-3d">source</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="journey wrap" id="journey">
+      <div class="section-heading-row">
+        <div>
+          <p class="eyebrow">the route so far</p>
+          <h2>Coding journey</h2>
+        </div>
+        <span class="section-stamp">Patiala → everywhere</span>
+      </div>
+      <p class="section-lede">Small steps, real projects, and a growing curiosity about what the web can make possible.</p>
+      <div class="timeline" role="list">
+        <article class="timeline-item is-active" role="listitem">
+          <button class="timeline-marker" type="button" aria-expanded="true" aria-controls="journey-detail-1"><span>01</span></button>
+          <div class="timeline-copy">
+            <p class="timeline-place">Patiala, Punjab · the beginning</p>
+            <h3>Started with curiosity</h3>
+            <p id="journey-detail-1" class="timeline-detail">Learning how HTML and CSS turn a blank file into something people can use, share, and feel.</p>
+          </div>
+        </article>
+        <article class="timeline-item" role="listitem">
+          <button class="timeline-marker" type="button" aria-expanded="false" aria-controls="journey-detail-2"><span>02</span></button>
+          <div class="timeline-copy">
+            <p class="timeline-place">Building · one page at a time</p>
+            <h3>Found my front-end rhythm</h3>
+            <p id="journey-detail-2" class="timeline-detail">JavaScript, responsive layouts, and the satisfying loop of making an idea work better on every screen.</p>
+          </div>
+        </article>
+        <article class="timeline-item" role="listitem">
+          <button class="timeline-marker" type="button" aria-expanded="false" aria-controls="journey-detail-3"><span>03</span></button>
+          <div class="timeline-copy">
+            <p class="timeline-place">Global projects · real audiences</p>
+            <h3>Made websites with a real audience</h3>
+            <p id="journey-detail-3" class="timeline-detail">From e-commerce experiments to personal projects, creating useful digital spaces for people beyond my own screen.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mindset-quote wrap" aria-label="Mindset quote">
+      <blockquote>
+        <p>Life doesn't wait for you to be ready. It never gets easier; you just get stronger.</p>
+        <p>The graveyard is full of people who had a plan for tomorrow.</p>
+        <strong>You're still breathing. Move.</strong>
+      </blockquote>
+    </section>
+
+    <section class="now wrap" id="now">
+      <div class="now-panel">
+        <div class="now-heading">
+          <div><p class="eyebrow">a live snapshot</p><h2>Right now</h2></div>
+          <span class="now-status"><span class="pulse-dot"></span> in progress</span>
+        </div>
+        <ul class="now-list">
+          <li><span class="now-label">building</span><span>personal web projects and e-commerce experiments</span></li>
+          <li><span class="now-label">learning</span><span>front-end web development &amp; JavaScript</span></li>
+          <li><span class="now-label">exploring</span><span>dropshipping, product sourcing &amp; digital marketing</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="skills wrap" id="skills">
+      <p class="eyebrow">the working kit</p>
+      <h2>Skills &amp; tooling</h2>
+      <p class="section-lede">A practical mix of craft, commerce, and tools I use to keep learning in public.</p>
+      <div class="skills-grid">
+        <article class="skill-group">
+          <p class="skill-index">01 / frontend</p>
+          <h3>Build the experience</h3>
+          <ul><li>HTML &amp; semantic structure</li><li>CSS &amp; responsive design</li><li>JavaScript interactions</li><li>UI / web design</li></ul>
+        </article>
+        <article class="skill-group">
+          <p class="skill-index">02 / e-commerce</p>
+          <h3>Make ideas sell</h3>
+          <ul><li>Product research</li><li>Dropshipping workflows</li><li>Storefront thinking</li><li>Conversion-focused layouts</li></ul>
+        </article>
+        <article class="skill-group">
+          <p class="skill-index">03 / developer tools</p>
+          <h3>Ship with intent</h3>
+          <ul><li>VS Code</li><li>Git &amp; GitHub</li><li>Browser DevTools</li><li>Three.js experiments</li></ul>
+        </article>
+      </div>
+
+    </section>
+
+    <section class="notes wrap" id="notes">
+      <div class="section-heading-row">
+        <div><p class="eyebrow">field notes</p><h2>Notes &amp; learnings</h2></div>
+        <span class="section-stamp">still figuring it out</span>
+      </div>
+      <div class="notes-grid">
+        <article class="note-card"><p class="note-meta">01 · mindset</p><h3>Start before you feel ready</h3><p>The first version only needs to exist. Clarity arrives faster once there is something real to improve.</p><a href="#contact">talk about it <span aria-hidden="true">↗</span></a></article>
+        <article class="note-card"><p class="note-meta">02 · frontend</p><h3>Good CSS is a conversation</h3><p>Every layout choice answers a question: what matters first, and how should it feel to move through it?</p><a href="#contact">share a thought <span aria-hidden="true">↗</span></a></article>
+        <article class="note-card"><p class="note-meta">03 · e-commerce</p><h3>Curiosity is a business skill</h3><p>Product research, customer empathy, and thoughtful presentation belong in the same toolbox.</p><a href="#contact">say hello <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+
+    <section class="contact wrap" id="contact">
+      <h2>Say hi</h2>
+      <p class="section-lede">
+        Best way to reach me is email, or find me on the links below.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:tejveer603s@gmail.com">tejveer603s@gmail.com</a>
+        <a href="https://www.instagram.com/tejveer_dhanju?stkn=OWdydGtodTRzaTVr" target="_blank" rel="noopener noreferrer">tejveer_dhanju</a>
+      </div>
+
+      <div class="contact-layout">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-grid">
+            <label for="name">Your name <span>*</span><input id="name" name="name" type="text" autocomplete="name" required></label>
+            <label for="email">Your email <span>*</span><input id="email" name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <label for="message">Your message <span>*</span><textarea id="message" name="message" rows="5" required></textarea></label>
+          <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+          <button class="form-submit btn-3d" type="submit">send message <span aria-hidden="true">↗</span></button>
+          <p class="form-success" id="form-success" role="status" aria-live="polite">Thanks for reaching out. I’ll get back to you soon.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="advancement-toast" id="advancement-toast" aria-label="End of page notification" aria-hidden="true">
+    <div class="advancement-toast-inner">
+      <button class="advancement-toast-close" id="advancement-toast-close" type="button" aria-label="Close advancement notification">×</button>
+      <img src="advancement-the-end.jpeg" alt="Advancement Made! The End?" loading="lazy">
+    </div>
+  </aside>
+  <audio id="advancement-sound" preload="auto" src="challenge-complete.mp3"></audio>
+
+  <footer class="site-footer wrap">
+    <div class="pixel-grass-strip" aria-hidden="true"></div>
+    <div class="site-footer-main">
+      <p>Made by hand in Patiala · <span id="year"></span></p>
+      <p class="site-coordinates">X: 30 · Y: 70 · Z: 2026 <span class="footer-torch" aria-hidden="true">♨</span></p>
+      <a class="respawn-link" href="#top">respawn ↑</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
