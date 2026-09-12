@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Three files, no build step needed: `index.html`, `style.css`, `script.js`.",
   "main": "script.js",
-  "scripts": {
-    "build": "node build.js",
+  "scripts": {},
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
