@@ -82,17 +82,6 @@ themeToggle?.addEventListener("click", () => {
   localStorage.setItem("tejveer-theme", nextTheme);
 });
 
-document.querySelectorAll(".timeline-marker").forEach((marker) => {
-  marker.addEventListener("click", () => {
-    const item = marker.closest(".timeline-item");
-    document.querySelectorAll(".timeline-item").forEach((entry) => {
-      const active = entry === item;
-      entry.classList.toggle("is-active", active);
-      entry.querySelector(".timeline-marker")?.setAttribute("aria-expanded", String(active));
-    });
-  });
-});
-
 const caseStudyModal = document.getElementById("case-study-modal");
 const caseStudyTrigger = document.getElementById("case-study-trigger");
 const caseStudyClose = document.getElementById("case-study-close");
@@ -109,37 +98,6 @@ caseStudyModal?.addEventListener("click", (event) => {
   if (event.target === caseStudyModal) caseStudyModal.close();
 });
 caseStudyModal?.addEventListener("close", () => caseStudyReturnFocus?.focus());
-
-// Follow the reader through the journey as each milestone reaches the viewport.
-(function initJourneyScroll() {
-  if (typeof gsap !== "undefined") return;
-  const items = Array.from(document.querySelectorAll(".timeline-item"));
-  if (!items.length) return;
-
-  const setActiveJourneyItem = (activeItem) => {
-    items.forEach((item) => {
-      const active = item === activeItem;
-      item.classList.toggle("is-active", active);
-      item.querySelector(".timeline-marker")?.setAttribute("aria-expanded", String(active));
-    });
-  };
-
-  const updateJourneyOnScroll = () => {
-    const readingLine = window.innerHeight * 0.42;
-    const activeItem = items.reduce((closestItem, item) => {
-      const bounds = item.getBoundingClientRect();
-      const distance = Math.abs(bounds.top + bounds.height / 2 - readingLine);
-      if (!closestItem || distance < closestItem.distance) return { item, distance };
-      return closestItem;
-    }, null);
-    if (activeItem) setActiveJourneyItem(activeItem.item);
-  };
-
-  document.addEventListener("scroll", updateJourneyOnScroll, { passive: true });
-  window.addEventListener("resize", updateJourneyOnScroll);
-  window.addEventListener("load", updateJourneyOnScroll);
-  updateJourneyOnScroll();
-})();
 
 const contactForm = document.getElementById("contact-form");
 const formError = document.getElementById("form-error");
@@ -422,50 +380,6 @@ window.addEventListener("load", highlightNav);
   document.addEventListener("scroll", updateScrollParallax, { passive: true });
   window.addEventListener("resize", updateScrollParallax);
   updateScrollParallax();
-})();
-
-// Activate journey milestones as the cursor travels down or up through the section.
-(function initJourneyMouseTracking() {
-  const journey = document.querySelector(".journey");
-  const items = Array.from(document.querySelectorAll(".timeline-item"));
-  if (!journey || !items.length) return;
-
-  let previousPointerY = null;
-  let activeItem = items.find((item) => item.classList.contains("is-active")) || items[0];
-
-  const activateFromPointer = (event) => {
-    const closest = items.reduce((result, item) => {
-      const bounds = item.getBoundingClientRect();
-      const distance = Math.abs(event.clientY - (bounds.top + bounds.height / 2));
-      return !result || distance < result.distance ? { item, distance } : result;
-    }, null);
-    if (!closest || closest.item === activeItem) {
-      previousPointerY = event.clientY;
-      return;
-    }
-
-    const direction = previousPointerY === null || event.clientY >= previousPointerY ? 1 : -1;
-    activeItem = closest.item;
-    items.forEach((item) => {
-      const active = item === activeItem;
-      item.classList.toggle("is-active", active);
-      item.querySelector(".timeline-marker")?.setAttribute("aria-expanded", String(active));
-    });
-
-    if (typeof gsap !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.fromTo(
-        activeItem,
-        { y: direction * 20, autoAlpha: 0.4 },
-        { y: 0, autoAlpha: 1, duration: 0.45, ease: "back.out(1.3)", overwrite: true }
-      );
-    }
-    previousPointerY = event.clientY;
-  };
-
-  journey.addEventListener("pointermove", activateFromPointer);
-  journey.addEventListener("pointerleave", () => {
-    previousPointerY = null;
-  });
 })();
 
 /* ==========================================================================
@@ -824,47 +738,11 @@ window.addEventListener("load", highlightNav);
       scrollTrigger: { trigger: ".now-panel", start: "top 82%", toggleActions: "play none none reverse" }
     });
 
-    journeyItems.forEach((item) => {
-      ScrollTrigger.create({
-        trigger: item,
-        start: "top 42%",
-        end: "bottom 42%",
-        onEnter: () => {
-          activateJourneyItem(item);
-          animateJourneyItem(item, 1);
-        },
-        onEnterBack: () => {
-          activateJourneyItem(item);
-          animateJourneyItem(item, -1);
-        },
-        onLeaveBack: () => {
-          gsap.set(item, { y: 18, autoAlpha: 0.58 });
-        }
-      });
-    });
-
     gsap.utils.toArray(".hero-tags span, .btn-3d, .theme-toggle-btn").forEach((element) => {
       element.addEventListener("mouseenter", () => gsap.to(element, { y: -4, scale: 1.04, duration: 0.2, ease: "power2.out", overwrite: true }));
       element.addEventListener("mouseleave", () => gsap.to(element, { y: 0, scale: 1, duration: 0.35, ease: "elastic.out(1, 0.45)", overwrite: true }));
     });
   });
-
-  function activateJourneyItem(item) {
-    journeyItems.forEach((entry) => {
-      const active = entry === item;
-      entry.classList.toggle("is-active", active);
-      entry.querySelector(".timeline-marker")?.setAttribute("aria-expanded", String(active));
-      gsap.to(entry, { x: active ? 8 : 0, scale: active ? 1.02 : 1, autoAlpha: active ? 1 : 0.58, duration: 0.45, ease: "power2.out", overwrite: true });
-    });
-  }
-
-  function animateJourneyItem(item, direction) {
-    gsap.fromTo(
-      item,
-      { y: direction * 22, autoAlpha: 0.35 },
-      { y: 0, autoAlpha: 1, duration: 0.65, ease: "back.out(1.35)", overwrite: true }
-    );
-  }
 
   function activateBuildStep(step) {
     buildSteps.forEach((entry) => {

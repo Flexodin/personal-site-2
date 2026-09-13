@@ -413,12 +413,12 @@ section {
 .timeline-item { display: grid; grid-template-columns: 2.2rem 1fr; gap: 1.2rem; position: relative; z-index: 1; padding-bottom: 2rem; opacity: 0.58; transform: translateX(0) scale(1); transform-origin: left center; transition: opacity 0.45s ease, transform 0.45s ease, translate 0.25s ease-out; will-change: transform, translate; }
 .timeline-item.is-active { z-index: 2; opacity: 1; transform: translateX(0.5rem) scale(1.02); }
 .timeline-item:last-child { padding-bottom: 0; }
-.timeline-marker { width: 2.1rem; height: 2.1rem; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font: 0.65rem var(--mono); cursor: pointer; position: relative; z-index: 1; }
+.timeline-marker { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font: 0.65rem var(--mono); position: relative; z-index: 1; }
 .timeline-item.is-active .timeline-marker { background: var(--orange); color: #fff; box-shadow: 3px 3px 0 var(--ink); }
 .timeline-place { color: var(--blue); font-size: 0.72rem; margin: 0 0 0.3rem; }
 .timeline-copy h3 { font-size: 1.3rem; margin-bottom: 0.35rem; }
 .timeline-detail { max-width: 58ch; font-size: 0.9rem; margin: 0; }
-.timeline-item:not(.is-active) .timeline-detail { display: none; }
+.timeline-detail { display: block; }
 .skills-grid, .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2rem; }
 .skill-group, .note-card { border: 1.5px solid var(--ink); padding: 1.25rem; background: var(--surface); position: relative; box-shadow: 4px 4px 0 var(--blue); transform-style: preserve-3d; transition: transform 0.15s ease-out, box-shadow 0.2s ease-out; will-change: transform; overflow: hidden; }
 .skill-group:hover, .note-card:hover { box-shadow: 8px 8px 0 var(--orange); }
@@ -436,6 +436,37 @@ section {
   color: var(--grey);
   max-width: 50ch;
   margin-top: -0.5rem;
+}
+
+.shooting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.shooting-card {
+  border: 1.5px solid var(--ink);
+  padding: 1.25rem;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--orange);
+}
+.shooting-card-number {
+  color: var(--orange);
+  font-size: 0.72rem;
+}
+.shooting-card h3 {
+  margin: 0.7rem 0 0.45rem;
+  font-size: 1.08rem;
+}
+.shooting-card p {
+  color: var(--grey);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+.shooting-range-link {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
 }
 
 .mindset-quote {
@@ -809,6 +840,7 @@ body[data-theme="dark"] .form-success { color: #7ee2ae; }
 @media (max-width: 768px) {
   .hero-video-wrap { min-height: 620px; }
   .skills-grid, .notes-grid { grid-template-columns: 1fr; }
+  .shooting-grid { grid-template-columns: 1fr; }
   .build-lab { grid-template-columns: 1fr; gap: 1.75rem; }
   .contact-layout { gap: 2rem; }
 }
