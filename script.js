@@ -1,9 +1,7 @@
 
-// Footer year, kept up to date automatically
+ 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// Give the hero pixels a small burst when the page moves.
 (function initPixelScrollMotion() {
   const particles = document.querySelector(".pixel-particles");
   if (!particles || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -15,8 +13,6 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
     resetTimer = window.setTimeout(() => particles.classList.remove("is-scrolling"), 180);
   }, { passive: true });
 })();
-
-// Slow the hero video down and let it travel backward before repeating.
 (function initHeroVideo() {
   const video = document.querySelector(".hero-video");
   if (!video) return;
@@ -58,7 +54,6 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
 })();
 
-// Respect a saved choice first, then follow the device preference.
 const themeToggle = document.getElementById("theme-toggle");
 const savedTheme = localStorage.getItem("tejveer-theme");
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -140,7 +135,6 @@ contactForm?.addEventListener("submit", async (event) => {
   }
 });
 
-// Celebrate reaching the final contact section without covering the form itself.
 (function initAdvancementToast() {
   const contactSection = document.getElementById("contact");
   const toast = document.getElementById("advancement-toast");
@@ -153,7 +147,6 @@ contactForm?.addEventListener("submit", async (event) => {
   let isPendingPlay = false;
   let synthContext = null;
 
-  // Direct Audio instance for fast, independent playback
   let audioObj = null;
   try {
     audioObj = new Audio("challenge-complete.mp3");
@@ -161,7 +154,6 @@ contactForm?.addEventListener("submit", async (event) => {
     audioObj.preload = "auto";
   } catch (e) {}
 
-  // Synthesized Minecraft-style fanfare fallback using Web Audio API
   const playSynthesizedChime = async () => {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -202,16 +194,12 @@ contactForm?.addEventListener("submit", async (event) => {
 
   const playAdvancementSound = async () => {
     let playPromise = null;
-
-    // 1. Try playing via independent Audio instance
     if (audioObj) {
       try {
         audioObj.currentTime = 0;
         playPromise = audioObj.play();
       } catch (err) {}
     }
-
-    // 2. Try HTMLAudioElement if audioObj didn't start
     if (!playPromise && soundEl && typeof soundEl.play === "function") {
       try {
         soundEl.currentTime = 0;
@@ -230,15 +218,14 @@ contactForm?.addEventListener("submit", async (event) => {
         hasPlayed = synthesized;
       }
     } else {
-      // Direct Web Audio fallback
+  
       const synthesized = await playSynthesizedChime();
       isPendingPlay = !synthesized;
       hasPlayed = synthesized;
     }
   };
 
-  // If autoplay was blocked because user scrolled without a prior click,
-  // trigger sound on the first click/tap/keypress anywhere on the page
+
   const triggerPendingSoundOnGesture = () => {
     if (isPendingPlay && !hasPlayed && toast.classList.contains("is-visible")) {
       playAdvancementSound();
@@ -249,7 +236,7 @@ contactForm?.addEventListener("submit", async (event) => {
     window.addEventListener(evt, triggerPendingSoundOnGesture, { passive: true });
   });
 
-  // Clicking on the toast itself will ALWAYS play or replay the sound!
+
   toast.style.cursor = "pointer";
   toast.setAttribute("title", "Click to replay advancement sound");
   toast.addEventListener("click", (e) => {
@@ -283,7 +270,6 @@ contactForm?.addEventListener("submit", async (event) => {
   observer.observe(contactSection);
 })();
 
-// Highlight the nav link for the section currently in view
 const sections = document.querySelectorAll("main section[id]");
 const navLinks = document.querySelectorAll(".site-header nav a");
 
@@ -304,7 +290,6 @@ const highlightNav = () => {
 document.addEventListener("scroll", highlightNav, { passive: true });
 window.addEventListener("load", highlightNav);
 
-// Bring each build-lab step forward as it reaches the reading line.
 (function initBuildLabScrollSteps() {
   if (typeof gsap !== "undefined") return;
   const steps = Array.from(document.querySelectorAll(".build-lab-points article"));
@@ -330,8 +315,6 @@ window.addEventListener("load", highlightNav);
   window.addEventListener("load", updateActiveStep);
   updateActiveStep();
 })();
-
-// Let the build steps and journey milestones subtly follow the cursor and scroll position.
 (function initScrollMouseParallax() {
   const elements = Array.from(document.querySelectorAll(".build-lab-points article, .timeline-item"));
   if (!elements.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -381,21 +364,14 @@ window.addEventListener("load", highlightNav);
   window.addEventListener("resize", updateScrollParallax);
   updateScrollParallax();
 })();
-
-/* ==========================================================================
-   Interactive 3D Hero Scene (Three.js)
-   ========================================================================== */
 (function init3DHero() {
   const canvas = document.getElementById("hero-3d-canvas");
   const container = document.getElementById("hero-3d-wrap");
   if (!canvas || !container || typeof THREE === "undefined") return;
 
-  // Scene & Camera
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
   camera.position.set(0, 0, 7.2);
-
-  // Renderer
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,
@@ -405,7 +381,6 @@ window.addEventListener("load", highlightNav);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
 
-  // Lighting
   const ambientLight = new THREE.AmbientLight(0xfffbf0, 0.95);
   scene.add(ambientLight);
 
@@ -421,11 +396,9 @@ window.addEventListener("load", highlightNav);
   topLight.position.set(0, 5, 2);
   scene.add(topLight);
 
-  // 3D Objects Group
   const cluster = new THREE.Group();
   scene.add(cluster);
 
-  // Materials
   const orangeGloss = new THREE.MeshPhysicalMaterial({
     color: 0xff6b35,
     roughness: 0.14,
@@ -463,13 +436,10 @@ window.addEventListener("load", highlightNav);
     transparent: true,
     opacity: 0.65
   });
-
-  // 1. Main Hero Balloon (Orange)
   const mainBalloonGeo = new THREE.SphereGeometry(1.2, 48, 48);
   const mainBalloon = new THREE.Mesh(mainBalloonGeo, orangeGloss);
   mainBalloon.position.set(0, 0.15, 0);
 
-  // Balloon Knot
   const knotGeo = new THREE.ConeGeometry(0.16, 0.2, 16);
   const knot = new THREE.Mesh(knotGeo, orangeGloss);
   knot.rotation.x = Math.PI;
@@ -477,7 +447,6 @@ window.addEventListener("load", highlightNav);
   mainBalloon.add(knot);
   cluster.add(mainBalloon);
 
-  // 2. Secondary Floating Balloon (Blue)
   const blueBalloonGeo = new THREE.SphereGeometry(0.72, 36, 36);
   const blueBalloon = new THREE.Mesh(blueBalloonGeo, blueGloss);
   blueBalloon.position.set(-1.45, 0.85, -0.4);
